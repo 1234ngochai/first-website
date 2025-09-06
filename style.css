@@ -1,0 +1,72 @@
+.article-date {
+  position: relative;  /* positioning, tai sao lai nhu v */
+  height: 30px;
+}
+.custom-date {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  color: #999;
+}
+
+.banner {
+    background-color: rgb(23, 168, 241) !important;
+}
+
+.banner-logo-font{
+    color: rgb(255, 255, 255);
+}
+
+.navbar-brand {
+    color: rgb(23, 168, 241) !important;
+}
+
+.nav-link.active {
+    color: rgb(23, 168, 241) !important;
+    border-bottom: rgb(23, 168, 241) !important;
+}
+
+.author{
+    color: rgb(23, 168, 241) !important;
+}
+
+.logo-font{
+        color: rgb(23, 168, 241) !important;
+}
+
+.btn-outline-primary {
+    color: rgb(23, 168, 241) !important;
+    background-image: none;
+    background-color: transparent;
+    border-color: rgb(23, 168, 241) !important;
+}
+
+.btn-outline-primary:hover {
+  color: #fff !important;
+  background-color: rgb(23, 168, 241) !important;
+  border-color: rgb(23, 168, 241) !important;
+}
+
+.nav-pills.outline-active .nav-link.active {
+    background: #fff !important;
+    border-bottom: 2px solid rgb(23, 168, 241) !important;
+    color: rgb(23, 168, 241) !important;
+}
+
+
+.page-item.active .page-link{
+    color: #fff;
+    background-color: rgb(23, 168, 241) !important;
+    border-color: rgb(23, 168, 241) !important;
+}
+
+.page-link {
+    position: relative;
+    float: left;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    color: rgb(23, 168, 241);
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
