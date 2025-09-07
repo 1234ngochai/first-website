@@ -70,3 +70,9 @@
     background-color: #fff;
     border: 1px solid #ddd;
 }
+
+
+a {
+    color: rgb(23, 168, 241);
+    text-decoration: none;
+}
