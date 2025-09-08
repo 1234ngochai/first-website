@@ -1,13 +1,19 @@
 <!-- Todo:
-- Render layout
-- Change banner text
-- change Primary-Color (cam+ gi cung duoc)
+- Render layout 10
+- Change banner text 10
+- change Primary-Color (cam+ gi cung duoc)7
 - Change tag position -> Bring div with tag before div contain feed, as it will render div with tag first.
 - Move date under tag(on article preview) -> create a div as a last element in the parent div, style the div so it has hieght, add a span
 as a children and style it so it position itself at bottom right of the div.
 
 -->
 
+
+<!-- 
+replace the initial style with custom style 
+create a function (generateArticlePreview({ title: "", description: "", author: "" })) in js to generate an article preview.
+
+-->
 
 <head>
     <meta charset="utf-8" />
@@ -20,6 +26,12 @@ as a children and style it so it position itself at bottom right of the div.
         href="//fonts.googleapis.com/css?family=Titillium+Web:700|Source+Serif+Pro:400,700|Merriweather+Sans:400,700|Source+Sans+Pro:400,300,600,700,300italic,400italic,600italic,700italic"
         rel="stylesheet" type="text/css" />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+
     <link href="//demo.productionready.io/main.css" rel="stylesheet" />
     <link href="style.css" rel="stylesheet" />
 </head>
@@ -31,7 +43,7 @@ as a children and style it so it position itself at bottom right of the div.
     -->
     <nav class="navbar navbar-light">
         <div class="container">
-            <a class="navbar-brand" href="/">Conduit</a>
+            <a class="navbar-brand-custom" href="/">Conduit</a>
             <ul class="nav navbar-nav pull-xs-right">
                 <li class="nav-item">
                     <a class="nav-link active" href="/">Home</a>
@@ -83,7 +95,7 @@ as a children and style it so it position itself at bottom right of the div.
                 </div>
                 <div class="col-md-9">
 
-                    <div class="feed-toggle">
+                    <div class="feed-toggle" id="feed-id">
                         <ul class="nav nav-pills outline-active">
                             <li class="nav-item">
                                 <a class="nav-link" href="">Your Feed</a>
@@ -162,6 +174,9 @@ as a children and style it so it position itself at bottom right of the div.
             </div>
         </div>
     </div>
+
+    <script src="./script.js"></script>
+
 </body>
 
 <footer>
