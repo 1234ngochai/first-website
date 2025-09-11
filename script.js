@@ -60,6 +60,7 @@ function generate_article_meta(author) {
     const profile_name = document.createElement("a");
     profile_name.className = "author";
     profile_name.textContent = author;
+    profile_name.href = "/profile/eric-simons";
     info.appendChild(profile_name);
 
     article_meta.appendChild(profile_link);
