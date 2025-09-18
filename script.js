@@ -75,7 +75,7 @@ function generate_like_button() {
     const icon = document.createElement("i");
     icon.className = "ion-heart";
 
-    button.appendChild(icon);
+    button.append(icon);
     button.append(" 0");
     return button
 
@@ -100,6 +100,8 @@ function generate_article_preview_body({ title, description, tag }) {
     const body_link = document.createElement("a");
     body_link.href = "/article/how-to-build-webapps-that-scale";
     body_link.className = "preview-link";
+    body_link.title = "Preview Link";
+    body_link.setAttribute("xeko","2")
 
     const title_container = document.createElement("h1");
     title_container.textContent = title;
@@ -189,6 +191,7 @@ function generate_article_preview_template({ author, title, description, tag }) 
     article_preview.appendChild(button);
     article_preview.appendChild(body);
     article_preview.appendChild(date);
+    article_preview.prepend
     return article_preview;
 
 }
@@ -200,5 +203,25 @@ function generate_article_preview(data) {
 }
 
 
-const data = { author: "Hai", title: "Title", description: "description", tag: ["realword","1","2"] };
-generate_article_preview(data);
+// generate_article_preview(data);
+const article_preview_data = { author: "1", titlie: "Title", description: "description", tag: ["realword","1","2"] };
+const ariticle_array = [{ author: "2", title: "Title", description: "description", tag: ["realword","1","2"] },
+{ author: "3", title: "Title", description: "description", tag: ["realword","1","2"] },
+{ author: "4", title: "Title", description: "description", tag: ["realword","1","2"] },
+{ author: "5", title: "Title", description: "description", tag: ["realword","1","2"] },
+];
+
+function article_preview_data_input(data){
+    if (Array.isArray(data)){
+        for ( const item of data){
+            generate_article_preview(item);
+        } 
+        return;
+    }
+    else{
+        generate_article_preview(data);
+    }
+
+}
+
+article_preview_data_input(ariticle_array);

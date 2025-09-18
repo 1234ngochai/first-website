@@ -1,0 +1,1 @@
+a function to generate an array of article preview
