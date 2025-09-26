@@ -83,18 +83,22 @@ font-size: 0.8rem;
     border-color: var(--primary-color);
 }
 
-
-
-.loader {
-    width: 48px;
-    height: 48px;
-    border: 5px solid #000000;
+.loadable:before {
+    content: "";
+    display: block;
+    width: 32px;
+    height: 32px;
+    margin: 36px auto;
+    border: 3px solid var(--primary-color);
     border-bottom-color: transparent;
     border-radius: 50%;
-    display: inline-block;
     box-sizing: border-box;
-    animation: rotation 1s linear infinite;
-    }
+    animation: rotation 1.5s linear infinite;
+}
+
+.loadable.--loaded:before {
+    display: none;
+}
 
     @keyframes rotation {
     0% {
@@ -103,5 +107,4 @@ font-size: 0.8rem;
     100% {
         transform: rotate(360deg);
     }
-    } 
-
+    }

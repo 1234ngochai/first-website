@@ -7,14 +7,14 @@ function generate_article_meta(author) {
                     <a href="/profile/eric-simons"><img src="${author.image}"></a>
                     <div class="info"><a class="author" href="/profile/eric-simons">${username}</a></div>
                 </div>
-        
+
             `
 }
 
 function generate_like_button(likes) {
     return `
     <button class="btn btn-outline-primary btn-sm pull-xs-right"><i class="ion-heart"></i> ${likes}</button>
-    ` 
+    `
 }
 
 function generate_article_tag_list(tag) {
@@ -95,20 +95,20 @@ function generate_article_preview_template(data) {
     const body = generate_article_preview_body({ title: title, description: description, tag: tag_list });
 
     const formated_date = generate_date(createdAt);
-    
+
     return `
     <div class="article-preview">
         ${article_meta}
         ${button}
         ${body}
         ${formated_date}
-    </div>    
+    </div>
 `
 }
 
 function generate_article_preview(data) {
 
-    const feed_colum = document.getElementById('feed-id');
+    const feed_colum = document.querySelector('.feed-container');
     let Article_preview_list = '';
 
     if (Array.isArray(data)) {
@@ -119,7 +119,9 @@ function generate_article_preview(data) {
     else {
             Article_preview_list += generate_article_preview_template(data)
     }
-    return feed_colum.insertAdjacentHTML("afterend", Article_preview_list);
+    feed_colum.insertAdjacentHTML("beforeend", Article_preview_list);
+
+    feed_colum.classList.add("--loaded");
 }
 
 function generate_popular_tag_list(data){
@@ -128,7 +130,8 @@ function generate_popular_tag_list(data){
     for (const item of data) {
         tag_list += generate_tag_list_preivew(item)
     }
-    return tag_colum.insertAdjacentHTML("afterend", tag_list);
+    tag_colum.insertAdjacentHTML("beforeend", tag_list);
+    tag_colum.classList.add("--loaded");
 
 }
 
@@ -139,26 +142,16 @@ function generate_tag_list_preivew(tag){
 }
 
 async function fetch_article_preview_data(number_of_article = 1){
-    const feed_colum = document.getElementById('feed-id');
-    const loader = `<span class="loader" id = "feed_loader_id" ></span>`;
-    feed_colum.insertAdjacentHTML("afterend", loader);
-
     const api = `https://api.realworld.show/api/articles?limit=${number_of_article}&offset=0`
     const data = await fetch(api);
     const article_prewview_data = await data.json();
 
-    const loader_id = document.getElementById("feed_loader_id");
-    loader_id.remove();
-
-
     generate_article_preview(article_prewview_data.articles);
-    return;
 
 
 }
 
 async function fetch_tag_list_data(){
-
     const api = `https://api.realworld.show/api/tags`
     const data = await fetch(api);
     const tag_list_data = await data.json();
@@ -168,6 +161,3 @@ async function fetch_tag_list_data(){
 fetch_tag_list_data();
 
 fetch_article_preview_data(4);
-
-
-

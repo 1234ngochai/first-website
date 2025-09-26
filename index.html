@@ -9,8 +9,8 @@ as a children and style it so it position itself at bottom right of the div.
 -->
 
 
-<!-- 
-replace the initial style with custom style 
+<!--
+replace the initial style with custom style
 create a function (generateArticlePreview({ title: "", description: "", author: "" })) in js to generate an article preview.
 
 -->
@@ -79,7 +79,7 @@ create a function (generateArticlePreview({ title: "", description: "", author: 
                 <div class="col-md-3">
                     <div class="sidebar">
                         <p>Popular Tags</p>
-                        <div class="tag-list" id="popular-tags-id">
+                        <div class="tag-list loadable" id="popular-tags-id">
                         </div>
 
                     </div>
@@ -97,6 +97,8 @@ create a function (generateArticlePreview({ title: "", description: "", author: 
                             </li>
                         </ul>
                     </div>
+
+                    <div class="feed-container loadable"></div>
 
                     <!-- <div class="article-preview">
 
@@ -179,4 +181,3 @@ create a function (generateArticlePreview({ title: "", description: "", author: 
         </span>
     </div>
 </footer>
-
