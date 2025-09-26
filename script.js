@@ -76,6 +76,7 @@ function generate_date(date) {
     <div class="article-date"><span class="custom-date">${created_date}</span></div>
     `
 }
+
 function generate_article_preview_template(data) {
     // article meta
     author = data.author;
@@ -138,9 +139,18 @@ function generate_tag_list_preivew(tag){
 }
 
 async function fetch_article_preview_data(number_of_article = 1){
+    const feed_colum = document.getElementById('feed-id');
+    const loader = `<span class="loader" id = "feed_loader_id" ></span>`;
+    feed_colum.insertAdjacentHTML("afterend", loader);
+
     const api = `https://api.realworld.show/api/articles?limit=${number_of_article}&offset=0`
     const data = await fetch(api);
     const article_prewview_data = await data.json();
+
+    const loader_id = document.getElementById("feed_loader_id");
+    loader_id.remove();
+
+
     generate_article_preview(article_prewview_data.articles);
     return;
 
@@ -148,6 +158,7 @@ async function fetch_article_preview_data(number_of_article = 1){
 }
 
 async function fetch_tag_list_data(){
+
     const api = `https://api.realworld.show/api/tags`
     const data = await fetch(api);
     const tag_list_data = await data.json();
@@ -157,5 +168,6 @@ async function fetch_tag_list_data(){
 fetch_tag_list_data();
 
 fetch_article_preview_data(4);
+
 
 
