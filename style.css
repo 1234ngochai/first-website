@@ -108,3 +108,16 @@ font-size: 0.8rem;
         transform: rotate(360deg);
     }
     }
+
+
+.btn-primary {
+    color: #fff;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #449d44;
+    border-color: #419641;
+}
