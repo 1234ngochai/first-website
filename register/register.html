@@ -1,0 +1,70 @@
+<head>
+    <meta charset="utf-8" />
+    <title>Conduit</title>
+
+    <!-- lo nhung cai sever nay sap thi sao, co the down nhung file nay ve k? -->
+    <link href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+
+    <link
+        href="//fonts.googleapis.com/css?family=Titillium+Web:700|Source+Serif+Pro:400,700|Merriweather+Sans:400,700|Source+Sans+Pro:400,300,600,700,300italic,400italic,600italic,700italic"
+        rel="stylesheet" type="text/css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+
+    <link href="//demo.productionready.io/main.css" rel="stylesheet" />
+    <link href="/style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <nav class="navbar navbar-light">
+        <div class="container">
+            <a class="navbar-brand-custom" href="/">Conduit</a>
+            <ul class="nav navbar-nav pull-xs-right">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/login/login.html">Sign in</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="/register/register.html">Sign up</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="auth-page">
+        <div class="container page">
+            <div class="row">
+                <div class="col-md-6 offset-md-3 col-xs-12">
+                    <h1 class="text-xs-center">Sign Up</h1>
+                    <p class="text-xs-center">
+                        <a href="/login/login.html">Have an account?</a>
+                    </p>
+                    <!-- <ul class="error-messages">
+                        <li>That email is already taken</li>
+                    </ul> -->
+                    <form>
+                        <fieldset class="form-group">
+                            <input id="register_username" class="form-control form-control-lg" type="text" placeholder="Username">
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <input id="register_email" class="form-control form-control-lg" type="text" placeholder="Email">
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <input id="register_password" class="form-control form-control-lg" type="password" placeholder="Password">
+                        </fieldset>
+                        <button id="register_submit_btn" class="btn btn-lg btn-primary pull-xs-right">Sign up</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/register/script.js"></script>
+</body>
