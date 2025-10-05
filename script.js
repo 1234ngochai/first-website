@@ -2,7 +2,7 @@ function generate_article_meta(author) {
     // article meta
     img_link = author.image;
     username = author.username;
-    return  `
+    return `
                 <div class="article-meta">
                     <a href="/profile/eric-simons"><img src="${author.image}"></a>
                     <div class="info"><a class="author" href="/profile/eric-simons">${username}</a></div>
@@ -117,14 +117,14 @@ function generate_article_preview(data) {
         }
     }
     else {
-            Article_preview_list += generate_article_preview_template(data)
+        Article_preview_list += generate_article_preview_template(data)
     }
     feed_colum.insertAdjacentHTML("beforeend", Article_preview_list);
 
     feed_colum.classList.add("--loaded");
 }
 
-function generate_popular_tag_list(data){
+function generate_popular_tag_list(data) {
     const tag_colum = document.getElementById('popular-tags-id');
     let tag_list = '';
     for (const item of data) {
@@ -135,29 +135,130 @@ function generate_popular_tag_list(data){
 
 }
 
-function generate_tag_list_preivew(tag){
-    return  `
+function generate_tag_list_preivew(tag) {
+    return `
             <a href="" class="tag-pill tag-default">${tag}</a>
             `
 }
 
-async function fetch_article_preview_data(number_of_article = 1){
-    const api = `https://api.realworld.show/api/articles?limit=${number_of_article}&offset=0`
-    const data = await fetch(api);
-    const article_prewview_data = await data.json();
 
+function generate_navbar_list(res) {
+    const token = localStorage.getItem('authToken');
+    const item = []
+    item.push(generate_nav_item("/","Home",true));
+    if (token) {
+        item.push(generate_nav_item("","logout",false,'log-out'))
+        item.push(generate_nav_item("",`hi ${res.user.username}`,false))
+    }
+    else {
+        item.push(generate_nav_item("login/login.html","Sign in",false));
+        item.push(generate_nav_item("register/register.html","Sign up",false));
+
+    }
+    return item;
+
+}
+
+
+function generate_nav_item(link, name, active = false, id = ""){
+
+    const is_active = active ? "active" : ""
+    const link_html = link ? `href="${link}"` : ""
+    const id_html = id ? `id = ${id}` : ""
+    return `
+            <li class="nav-item">
+                <a class="nav-link ${is_active}" ${link_html} ${id_html} >${name}</a>
+            </li>
+    `
+}
+
+
+function update_homepage_layout() {
+    const token = localStorage.getItem('authToken');
+    const banner = document.getElementById("home-page-banner-id");
+    if (token) {
+        banner.classList.add("hidden");
+    }
+
+}
+
+
+function bindLogout() {
+  const logout_link = document.getElementById('log-out');
+  if (!logout_link) 
+    return;
+  logout_link.addEventListener('click', (e) => {
+    localStorage.removeItem('authToken');
+    location.href = '/';
+  });
+}
+
+async function fetch_article_preview_data(number_of_article = 1) {
+    const token = localStorage.getItem('authToken');
+    const api = `https://api.realworld.show/api/articles?limit=${number_of_article}&offset=0`
+
+    if (token) {
+        data = await fetch(api, {
+            headers: { Authorization: `Token ${token}` }
+        });
+    } else {
+        data = await fetch(api);
+    }
+
+    const article_prewview_data = await data.json();
     generate_article_preview(article_prewview_data.articles);
 
 
 }
 
-async function fetch_tag_list_data(){
+
+async function fetch_tag_list_data() {
+    const token = localStorage.getItem('authToken');
+
     const api = `https://api.realworld.show/api/tags`
-    const data = await fetch(api);
+
+    if (token) {
+        data = await fetch(api, {
+            headers: { Authorization: `Token ${token}` }
+        });
+    } else {
+        data = await fetch(api);
+    }
     const tag_list_data = await data.json();
     generate_popular_tag_list(tag_list_data.tags);
 }
 
+async function fetch_user_data() {
+    const token = localStorage.getItem('authToken');
+    const nav_list = document.getElementById('navbar-list-item');
+    const api = `https://api.realworld.show/api/user`
+
+    let user_data;
+    if (token) {
+        const data = await fetch(api, {
+        method: 'GET',
+        headers: { Authorization: `Token ${token}` }
+        });
+        user_data = await data.json();
+    } else {
+        user_data = null;
+
+    }
+    const nav_bar_items = generate_navbar_list(user_data).join('');
+    nav_list.innerHTML = nav_bar_items;
+    bindLogout();
+    
+
+}
+
+
+
+update_homepage_layout();
+
+fetch_user_data();
+
 fetch_tag_list_data();
 
-fetch_article_preview_data(4);
+fetch_article_preview_data(5);
+
+
