@@ -46,18 +46,18 @@
                     <p class="text-xs-center">
                         <a href="/login/login.html">Have an account?</a>
                     </p>
-                    <!-- <ul class="error-messages">
-                        <li>That email is already taken</li>
-                    </ul> -->
-                    <form>
+                    <form id ="register_form">
                         <fieldset class="form-group">
-                            <input id="register_username" class="form-control form-control-lg" type="text" placeholder="Username">
+                            <input id="register_username" name="username" class="form-control form-control-lg" type="text" placeholder="Username" required>
+                            <label id="register_username_error" class="error-message" for="register_username"></label>
                         </fieldset>
                         <fieldset class="form-group">
-                            <input id="register_email" class="form-control form-control-lg" type="text" placeholder="Email">
+                            <input id="register_email" name="email" class="form-control form-control-lg" type="email" placeholder="Email" required>
+                            <label id="register_email_error" class="error-message" for="register_email"></label>
                         </fieldset>
                         <fieldset class="form-group">
-                            <input id="register_password" class="form-control form-control-lg" type="password" placeholder="Password">
+                            <input id="register_password" name="password" class="form-control form-control-lg" type="password" placeholder="Password" required>
+                            <label id="register_password_error" class="error-message" for="register_password"></label>
                         </fieldset>
                         <button id="register_submit_btn" class="btn btn-lg btn-primary pull-xs-right">Sign up</button>
                     </form>
