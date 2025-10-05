@@ -7,6 +7,10 @@ body {
     background-color: var(--primary-color);
 }
 
+.banner.hidden{
+    display: none;
+}
+
 .navbar-brand-custom {
     font-family:"Montserrat" ;
     font-size: 1.5rem ;
@@ -118,6 +122,16 @@ font-size: 0.8rem;
 
 .btn-primary:hover {
     color: #fff;
-    background-color: #449d44;
-    border-color: #419641;
+    background-color: rgb(2, 129, 193);
+    border-color: rgb(2, 129, 193);
+}
+
+.error-message {
+  color: #ef4444;        
+  display: none;     
+  margin-bottom: 0;
+}
+
+.error-message.show {      
+  display: block;     
 }
