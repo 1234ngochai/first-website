@@ -1,70 +1,66 @@
-async function sign_up(e) {
-    e.preventDefault();
-    // const form = e.currentTarget;
-    // const { username, email, password } = Object.fromEntries(new FormData(form));
+function validateInput(input){
+  const { validity, name } = input;
 
-    const username = document.getElementById("register_username").value;
-    const email = document.getElementById("register_email").value;
-    const password = document.getElementById("register_password").value;
-
-    const email_input = document.getElementById("register_email");
-    const username_input = document.getElementById("register_username");
-    const password_input = document.getElementById("register_password");
-
-    const email_error_message = validity_message(email_input,email_input.name);
-    const username_error_message = validity_message(username_input,username_input.name);
-    const password_error_message = validity_message(password_input,password_input.name);
-
-
-    const email_error = document.getElementById("register_email_error");
-    const username_error = document.getElementById("register_username_error");
-    const password_error = document.getElementById("register_password_error");
-
-
-    const okEmail    = apply_error_message(email_error_message,    email_error);
-    const okUsername = apply_error_message(username_error_message, username_error);
-    const okPassword = apply_error_message(password_error_message, password_error);
-
-    const is_valid = okEmail && okUsername && okPassword;
-    if (!is_valid) return;
-
-    const api = 'https://api.realworld.show/api/users';
-    const user = await fetch(api, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ user: { username, email, password } })
-    });
-    const user_data = await user.json();
-    if (user.ok === true){
-        localStorage.setItem('authToken', user_data.user.token);
-        localStorage.setItem('username', user_data.user.token);
-        location.href = 'http://localhost:5173/';
-        
-    }
-}
-
-
-function validity_message(input, type){
-  const email = input.validity;
-  if (email.valueMissing)    
-    return `${type} is required.`;
-  if (email.typeMismatch)    
-    return `Enter a valid ${type}.`;
+  if (validity.valueMissing)
+    return `${name} is required.`;
+  if (validity.typeMismatch)
+    return `Enter a valid ${name}.`;
   return '';
 }
 
-function apply_error_message(message, error_element){
-    if (message){
-        error_element.textContent = message;
-        error_element.classList.add('show');
-        return false
-    }
-    else{
-        error_element.textContent  = message
-        error_element.classList.remove("show");
-        return true
-    }
+function applyErrorMessage(input, message) {
+  const errorElement = input.nextElementSibling;
+
+  if (!errorElement) {
+    return true;
+  }
+
+  const isOK = !message;
+  errorElement.classList.toggle("show", !!message);
+  errorElement.textContent = message;
+
+  return isOK;
 }
 
-const register_submit_btn = document.getElementById("register_submit_btn");
-register_submit_btn.addEventListener("click", sign_up);
+async function signUp(evt) {
+  evt.preventDefault();
+
+  const inputs = evt.currentTarget.querySelectorAll("input:not([type=hidden])");
+  let isValid = true;
+
+  inputs.forEach((input) => {
+    const message = validateInput(input);
+    const isOK = applyErrorMessage(input, message);
+
+    if (!isOK) {
+      isValid = isOK;
+    }
+  });
+
+  if (!isValid) {
+    return;
+  }
+
+  const formData = new FormData(evt.currentTarget);
+  const user = {};
+  formData.forEach((value, key) => {
+    user[key] = value;
+  })
+
+  const api = 'https://api.realworld.show/api/users';
+  const userResp = await fetch(api, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ user })
+  });
+  const user_data = await userResp.json();
+
+  if (userResp.ok === true) {
+      localStorage.setItem('authToken', user_data.user.token);
+      localStorage.setItem('username', user_data.user.token);
+      location.href = '/';
+  }
+}
+
+const register_form = document.querySelector("#register_form");
+register_form.addEventListener("submit", signUp);
