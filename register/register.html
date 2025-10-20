@@ -56,6 +56,7 @@
                                 class="form-control form-control-lg"
                                 type="text"
                                 placeholder="Username"
+                                repeat ="Repeat username"
                                 required
                             />
                             <label
@@ -68,10 +69,11 @@
                         <fieldset class="form-group">
                             <input
                                 id="register_repeat_username"
-                                name="repeat-username"
+                                name="Repeat username"
                                 class="form-control form-control-lg"
                                 type="text"
                                 placeholder="Repeat Username"
+                                repeat ="Repeat username"
                                 required
                             />
                             <label
@@ -82,22 +84,52 @@
                         </fieldset>
 
                         <fieldset class="form-group">
-                            <input id="register_email" name="email" class="form-control form-control-lg" type="email" placeholder="Email" required>
+                            <input 
+                                id="register_email" 
+                                name="email" 
+                                class="form-control form-control-lg" 
+                                type="email" 
+                                placeholder="Email" 
+                                pattern= "^[A-Za-z\d_.+]{3,}@[A-Za-z]{3,}\.[A-Za-z]{2,}$"
+                                repeat="Repeat email"
+                                required>
                             <label id="register_email_error" class="error-message" for="register_email"></label>
                         </fieldset>
 
                         <fieldset class="form-group">
-                            <input id="repeat_register_email" name="repeat-email" class="form-control form-control-lg" type="email" placeholder="Repeat Email" required>
+                            <input 
+                                id="repeat_register_email" 
+                                name="Repeat email" 
+                                class="form-control form-control-lg" 
+                                type="email" 
+                                placeholder="Repeat Email" 
+                                repeat="Repeat email"
+                                required>
                             <label id="repeat_register_email_error" class="error-message" for="repeat_register_email"></label>
                         </fieldset>
 
                         <fieldset class="form-group">
-                            <input id="register_password" name="password" class="form-control form-control-lg" type="password" placeholder="Password" required>
+                            <input 
+                                id="register_password" 
+                                name="password" 
+                                class="form-control form-control-lg" 
+                                type="password"
+                                placeholder="Password" 
+                                pattern="^(?=.*[A-Z])(?=.*\d)(?!\d)(?=.*[^A-Za-z0-9]).{8,}$"
+                                repeat="Repeat password"
+                                required>
                             <label id="register_password_error" class="error-message" for="register_password"></label>
                         </fieldset>
 
                         <fieldset class="form-group">
-                            <input id="repeat_register_password" name="password" class="form-control form-control-lg" type="password" placeholder="Repeat Password" required>
+                            <input 
+                                id="repeat_register_password" 
+                                name="Repeat password"
+                                class="form-control form-control-lg" 
+                                type="password" 
+                                placeholder="Repeat Password" 
+                                repeat="Repeat password"
+                                required>
                             <label id="repeat_register_password_error" class="error-message" for="repeat_register_password"></label>
                         </fieldset>
 

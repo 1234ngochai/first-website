@@ -9,3 +9,19 @@
 	- [bbb] at least 3 chars and not including special chars and numberic chars
 	- [ccc] at least 2 chars and not including special chars and numberic chars
 # validate comparing value from "Repeat" input with its related
+//
+
+^(?=.*[A-Z])(?=.*[~ !@#$%^&*()_+\-=[\]{}\\|;:'",./<>?])(?!\d)(?=.*\d).{8,}$
+^[A-Za-z\d_.+]{3,}@[A-Za-z]{3,}\.[A-Za-z]{2,}$
+
+Abcdef!AbCCDDcDeeEEE
+
+1A3313bcdef!
+
+!Aabcf1
+
+Abcdefg1
+
+Ab!1
+
+

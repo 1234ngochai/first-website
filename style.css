@@ -130,6 +130,7 @@ font-size: 0.8rem;
   color: #ef4444;        
   display: none;     
   margin-bottom: 0;
+    white-space: pre-line;
 }
 
 .error-message.show {      
