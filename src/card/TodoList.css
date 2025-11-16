@@ -1,0 +1,12 @@
+.todo-list{
+    list-style: none;
+    padding: 0;
+}
+
+.todo-item{
+    background: #dbdbdb;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+    color: black;
+}

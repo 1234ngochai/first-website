@@ -1,0 +1,12 @@
+:root {
+  --primary-color: white;
+  --secondary-color: black;
+}
+
+.card {
+  background: var(--primary-color);
+  padding: 20px;
+  border-radius: 10px;
+  width: 350px;
+  height: 500px;
+}

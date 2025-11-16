@@ -1,0 +1,21 @@
+
+:root {
+  --primary-color: white;
+  --secondary-color: rgb(43, 109, 233);
+}
+
+.footer{
+    display: flex;
+    gap: 5px;
+}
+.todo-summary{
+    flex: 1;
+    background-color: var(--primary-color);
+    color: black;
+    font-size: 15px;
+}
+
+.button{
+    border-radius: 5px;
+    background-color: var(--secondary-color);
+}
