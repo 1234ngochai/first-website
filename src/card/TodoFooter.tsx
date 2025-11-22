@@ -1,10 +1,10 @@
 import "./TodoFooter.css"
 
-type Footer = {
-   text?: string;
+type HandleTodoList = {
+    handleTodoList: () => void;
 }
 
-function TodoFooter(footer: Footer){
+function TodoFooter(onTodoList: HandleTodoList){
     return (
         <div className="footer">
             <div 
@@ -12,7 +12,8 @@ function TodoFooter(footer: Footer){
                 Footer
             </div>
             <button 
-                className="button"> Clear All
+                className="button"
+                onClick={() => onTodoList.handleTodoList()}> Clear All
             </button>
         </div>
     )

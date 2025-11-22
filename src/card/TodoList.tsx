@@ -1,14 +1,16 @@
 import "./TodoList.css"
-type Todo = {
-    text: string
+type TodoList = {
+    List: string[]
 }
 
-function TodoList() {
+function TodoList(todoList:TodoList) {
+
   return (
     <ul className="todo-list">
-      <li className="todo-item">Buy a new gaming laptop</li>
-      <li className="todo-item">Complete previous task</li>
-      <li className="todo-item">Create a new todo</li>
+      {todoList.List.map((TodoItem, index) =>{
+        return <li key={index} className="todo-item"> {TodoItem} </li>
+      }
+    )}
     </ul>
   );
 }
