@@ -10,3 +10,7 @@
     padding: 5px;
     color: black;
 }
+.todo-done {
+    text-decoration: line-through;
+    opacity: 0.5;
+}

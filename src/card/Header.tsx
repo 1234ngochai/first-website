@@ -1,13 +1,13 @@
 import "./Header.css"
 
-type Title = {
-   text?: string;
+type Props = {
+   title?: string; //Title
 }
 
-function Header(title: Title){
+function Header({title}: Props){
     return(
         <h2 className="header">
-          {title.text}
+          {title}
         </h2>
     )
 }

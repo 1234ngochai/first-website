@@ -1,19 +1,20 @@
 import "./TodoFooter.css"
 
-type HandleTodoList = {
-    handleTodoList: () => void;
+type Props = {
+    onClearTodo: () => void;
+    getCompletedCount: () => string;
 }
 
-function TodoFooter(onTodoList: HandleTodoList){
+function TodoFooter({onClearTodo,getCompletedCount}: Props){
     return (
         <div className="footer">
             <div 
                 className="todo-summary">
-                Footer
+                {getCompletedCount()}
             </div>
             <button 
                 className="button"
-                onClick={() => onTodoList.handleTodoList()}> Clear All
+                onClick={() => onClearTodo()}> Clear All
             </button>
         </div>
     )

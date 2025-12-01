@@ -1,14 +1,14 @@
 import { useState } from "react"
 import "./TodoInput.css"
-type HandleTodoList = {
-    handleTodoList: (e:string) => void;
+type Props = {
+    onAddTodo: (text:string) => void;
 }
-function TodoInput(onTodoList: HandleTodoList) {
+function TodoInput({onAddTodo}: Props) {
     const [value, setValue] = useState("");
-    function handleButtonClick() {
+    function handleAddClick() {
         if (!value) 
             {return;}
-        onTodoList.handleTodoList(value);
+            onAddTodo(value);
         setValue("");
     }
     return (
@@ -21,7 +21,7 @@ function TodoInput(onTodoList: HandleTodoList) {
             />
             <button 
             className="button"
-            onClick={handleButtonClick}>
+            onClick={handleAddClick}>
             Add
             </button>
         </div>
