@@ -4,10 +4,11 @@ import type { Todo } from "./card"
 type Props = {
   list: Todo[],
   onRemoveItem: (index: number) => void;
-  ontoggleTodo: (index: number) => void;
+  onToggleTodo: (index: number) => void;
+  toggleTodoEdit: (index: number) => void;
 }
 
-function TodoList({ list, onRemoveItem, ontoggleTodo }: Props) {
+function TodoList({ list, onRemoveItem, onToggleTodo, toggleTodoEdit }: Props) {
   return (
     <ul className="todo-list">
       {list.map((todo, index) => {
@@ -15,19 +16,32 @@ function TodoList({ list, onRemoveItem, ontoggleTodo }: Props) {
           <li
             className= {todo.completed ? "todo-item todo-done" : "todo-item"}
             key={index}
+            onClick={() => onToggleTodo(index)}
           >
-            {todo.text}
+            <div className = "todo-text"
+            >
+              {todo.text}
+            </div>
 
             <button 
-              onClick={() => onRemoveItem(index)}
+              onClick={(e) => 
+                {e.stopPropagation();
+                onRemoveItem(index)}
+              }
+              className = "todo-button"
             >
-              remove
+              x
             </button>
 
             <button
-              onClick={() => ontoggleTodo(index)}
+              className = "todo-button"
+              onClick={(e) => 
+                {e.stopPropagation();
+                  toggleTodoEdit(index);
+                }
+              }
             >
-              {todo.completed ? "Undo" : "Done"}
+              {todo.edditing ? "Done" : "Edit"}
             </button>
           </li>
         );

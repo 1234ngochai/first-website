@@ -9,8 +9,25 @@
     margin-bottom: 5px;
     padding: 5px;
     color: black;
+    display: flex;
+    align-items: center;
 }
 .todo-done {
-    text-decoration: line-through;
     opacity: 0.5;
+}
+
+.todo-done .todo-text {
+    text-decoration: line-through;
+}
+
+
+.todo-text {
+    flex: 1;
+}
+
+.todo-button {
+    margin-left: 5px;
+    color: black;
+    background: #dbdbdb;
+    padding: 10px;
 }

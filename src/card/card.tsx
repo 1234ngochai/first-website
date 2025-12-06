@@ -8,6 +8,7 @@ import { useState } from "react";
 export type Todo = {
     text: string;
     completed: boolean
+    edditing: boolean
 }
 
 function Card() {
@@ -16,7 +17,8 @@ function Card() {
     function addTodo(text:string){
         const newTodo:Todo = {
             text: text,
-            completed: false
+            completed: false,
+            edditing: false
         }
         setTodoList([...todoList,newTodo])
     }
@@ -26,9 +28,14 @@ function Card() {
         console.log("clear all")
     }
 
-    function toggleTodo(index: number) {
+    function toggleTodoComplete(index: number) {
         setTodoList(todoList.map((todo, i)=>
-        index === i ? {text : todo.text, completed: !todo.completed } : todo
+        index === i ? {...todo, completed: !todo.completed } : todo
+        ))
+    }
+    function toggleTodoEdit(index: number) {
+        setTodoList(todoList.map((todo, i)=>
+        index === i ? {...todo, edditing: !todo.edditing } : todo
         ))
     }
     function removeTodo(index: number){
@@ -53,7 +60,7 @@ function Card() {
         <div className="card">
             <Header title="To Do list" />
             <TodoInput onAddTodo = {addTodo}/>
-            <TodoList list = {todoList} onRemoveItem={removeTodo} ontoggleTodo={toggleTodo} />
+            <TodoList list = {todoList} onRemoveItem={removeTodo} onToggleTodo={toggleTodoComplete} toggleTodoEdit ={toggleTodoEdit} />
             <TodoFooter onClearTodo ={clearTodos} getCompletedCount={countCompletedTodo}/>
         </div>
     )
