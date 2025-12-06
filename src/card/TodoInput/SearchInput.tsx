@@ -1,15 +1,17 @@
-type Props = {
-	value: string;
-	onChange: (text: string) => void;
-}
+import { useContext } from "react";
+import store from "../../Context";
 
-export default function SearchInput({ value, onChange }: Props) {
+export default function SearchInput() {
+	const { state, dispatch } = useContext(store);
+
 	return (
 		<input
         className="input"
         placeholder="Add your new todo"
-        value={value}
-        onChange={(e)=> onChange(e.target.value)}
+				value={state.searchText}
+        onChange={(e)=> {
+					dispatch({ type: "set-search", payload: e.target.value });
+				}}
     />
 	)
 }
