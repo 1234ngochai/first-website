@@ -19,13 +19,13 @@ function TodoFooter(){
 
     return (
         <div className="footer">
-            <div
+            <div 
                 className="todo-summary">
-                {countCompletedTodo ? countCompletedTodo() : ""}
+                {countCompletedTodo() ? countCompletedTodo() : ""}
             </div>
-            <button
+            <button 
                 className="button"
-                onClick={() => dispatch({ type: "clear" })}> Clear All
+                onClick={() => dispatch({type: "clear"})}> Clear All
             </button>
         </div>
     )

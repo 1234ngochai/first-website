@@ -3,6 +3,7 @@
 		- new item has input field to allow updating naming
 		- new item has an OK button to accept adding new item
 		- new item has a X button to cancel adding new item
+		
 - edit button
 	- change text to input field with current text value
 		- done button will trigger update text of the current item

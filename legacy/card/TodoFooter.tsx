@@ -1,20 +1,31 @@
+import { useContext } from "react";
 import "./TodoFooter.css"
+import store from "../Context";
 
-type Props = {
-    onClearTodo: () => void;
-    getCompletedCount: () => string;
-}
+function TodoFooter(){
+    const { state, dispatch } = useContext(store);
 
-function TodoFooter({onClearTodo,getCompletedCount}: Props){
+    function countCompletedTodo() {
+        let count = 0;
+
+        for (let i = 0; i < state.todoList.length; i++) {
+            if (state.todoList[i].completed) {
+            count++;
+            }
+        }
+
+        return count + "/" + state.todoList.length;
+    }
+
     return (
         <div className="footer">
-            <div 
+            <div
                 className="todo-summary">
-                {getCompletedCount()}
+                {countCompletedTodo ? countCompletedTodo() : ""}
             </div>
-            <button 
+            <button
                 className="button"
-                onClick={() => onClearTodo()}> Clear All
+                onClick={() => dispatch({ type: "clear" })}> Clear All
             </button>
         </div>
     )

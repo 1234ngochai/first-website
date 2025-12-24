@@ -6,12 +6,7 @@ export default function AddButton() {
   const searchText = state.searchText;
 
 	function handleAddClick() {
-      if (!searchText) {
-          return;
-      }
-
-      dispatch({ type: "set-search", payload: "" });
-      dispatch({ type: "add", payload: searchText });
+      dispatch({type:"add-draft"});
   }
 
 	return (

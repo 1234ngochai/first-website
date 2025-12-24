@@ -1,33 +1,32 @@
 import { createContext, type ActionDispatch } from "react";
-import type { Action } from "./interfaces/actions";
+import type { Action } from "./interfaces/action";
 
 export type Todo = {
-    id: number;
-    text: string;
-    completed: boolean
-    edditing: boolean
+    id:number,
+    text: string,
+    completed: boolean,
+    editing: boolean,
+    draft: boolean
 }
-
 
 export type State = {
     todoList: Todo[],
-    searchText: string;
+    searchText: string,
 }
 
 type Store = {
-	state: State,
-	dispatch: ActionDispatch<[Action]>,
+    state: State,
+    dispatch: ActionDispatch<[Action]>
 }
 
 export const initialState: State = {
-    todoList: [],
+    todoList:[],
     searchText: "",
 }
 
-
 const store = createContext<Store>({
-	state: initialState,
-	dispatch: () => {},
-});
+    state: initialState,
+    dispatch: () => {},
+})
 
 export default store;
